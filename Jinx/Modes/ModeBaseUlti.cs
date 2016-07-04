@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-using SharpDX.Direct3D9;
-using Collision = LeagueSharp.Common.Collision;
-
-namespace Jinx.Modes
+﻿namespace Jinx.Modes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using SharpDX.Direct3D9;
+    using Collision = LeagueSharp.Common.Collision;
+
     internal class ModeBaseUlti
     {
         static Menu MenuLocal;
@@ -50,10 +48,10 @@ namespace Jinx.Modes
             MenuLocal.AddItem(new MenuItem("baseUlt", "Base Ult").SetValue(true));
             MenuLocal.AddItem(new MenuItem("checkCollision", "Check Collision").SetValue(true));
             MenuLocal.AddItem(new MenuItem("panicKey", "No Ult while SBTW").SetValue(new KeyBind(32, KeyBindType.Press)));
-                //32 == space
+                // 32 == space
             MenuLocal.AddItem(
                 new MenuItem("regardlessKey", "No timelimit (hold)").SetValue(new KeyBind(17, KeyBindType.Press)));
-                //17 == ctrl
+                // 17 == ctrl
             ParentMenu.AddSubMenu(MenuLocal);
             Heroes = ObjectManager.Get<Obj_AI_Hero>().ToList();
             Enemies = Heroes.Where(x => x.IsEnemy).ToList();
@@ -89,7 +87,7 @@ namespace Jinx.Modes
             {
                 EnemySpawnPos = objSpawnPoint.Position;
             }
-            //ObjectManager.Get<GameObject>().FirstOrDefault(x => x.Type == GameObjectType.obj_SpawnPoint && x.IsEnemy).Position;
+            // ObjectManager.Get<GameObject>().FirstOrDefault(x => x.Type == GameObjectType.obj_SpawnPoint && x.IsEnemy).Position;
 
             Map = Utility.Map.GetMap().Type;
 
@@ -142,12 +140,12 @@ namespace Jinx.Modes
                 x.Player.IsValid<Obj_AI_Hero>() &&
                 !x.Player.IsDead &&
                 !DisabledChampions.Item(x.Player.ChampionName).GetValue<bool>() &&
-#pragma warning disable 618
+                #pragma warning disable 618
                 x.RecallInfo.Recall.Status == Packet.S2C.Teleport.Status.Start &&
-#pragma warning restore 618
-#pragma warning disable 618
+                #pragma warning restore 618
+                #pragma warning disable 618
                 x.RecallInfo.Recall.Type == Packet.S2C.Teleport.Type.Recall)
-#pragma warning restore 618
+                #pragma warning restore 618
                 .OrderBy(x => x.RecallInfo.GetRecallCountdown()))
             {
                 if (Utils.TickCount - LastUltCastT > 15000)
@@ -229,7 +227,7 @@ namespace Jinx.Modes
             }
         };
 
-        static bool CanUseUlt(Obj_AI_Hero hero) //use for allies when fixed: champ.Spellbook.GetSpell(SpellSlot.R) = Ready
+        static bool CanUseUlt(Obj_AI_Hero hero) // use for allies when fixed: champ.Spellbook.GetSpell(SpellSlot.R) = Ready
         {
             return hero.Spellbook.CanUseSpell(SpellSlot.R) == SpellState.Ready ||
                    (hero.Spellbook.GetSpell(SpellSlot.R).Level > 0 &&
@@ -244,7 +242,7 @@ namespace Jinx.Modes
 
             foreach (
                 Obj_AI_Hero champ in
-                    Allies.Where(x => //gathering the damage from allies should probably be done once only with timers
+                    Allies.Where(x => // gathering the damage from allies should probably be done once only with timers
                         x.IsValid<Obj_AI_Hero>() &&
                         !x.IsDead &&
                         ((x.IsMe && !x.IsStunned) ||
@@ -258,7 +256,7 @@ namespace Jinx.Modes
                     continue;
                 }
 
-                //increase timeneeded if it should arrive earlier, decrease if later
+                // increase timeneeded if it should arrive earlier, decrease if later
                 var timeneeded =
                     GetUltTravelTime(champ, UltSpellData[champ.ChampionName].Speed,
                         UltSpellData[champ.ChampionName].Delay, EnemySpawnPos) - 65;
@@ -270,7 +268,7 @@ namespace Jinx.Modes
                                 UltSpellData[champ.ChampionName].SpellStage)*
                         UltSpellData[champ.ChampionName].DamageMultiplicator;
                 else if (enemyInfo.RecallInfo.GetRecallCountdown() < timeneeded - (champ.IsMe ? 0 : 125))
-                    //some buffer for allies so their damage isnt getting reset
+                    // some buffer for allies so their damage isnt getting reset
                 {
                     enemyInfo.RecallInfo.IncomingDamage[champ.NetworkId] = 0;
                     continue;
@@ -351,11 +349,11 @@ namespace Jinx.Modes
 
             if (source.ChampionName == "Jinx" && distance > 1350)
             {
-                const float accelerationrate = 0.3f; //= (1500f - 1350f) / (2200 - speed), 1 unit = 0.3units/second
+                const float accelerationrate = 0.3f; // = (1500f - 1350f) / (2200 - speed), 1 unit = 0.3units/second
 
                 var acceldifference = distance - 1350f;
 
-                if (acceldifference > 150f) //it only accelerates 150 units
+                if (acceldifference > 150f) // it only accelerates 150 units
                     acceldifference = 150f;
 
                 var difference = distance - 1500f;
@@ -378,7 +376,7 @@ namespace Jinx.Modes
             input.CollisionObjects[0] = CollisionableObjects.Heroes;
 
             return Collision.GetCollision(new List<Vector3> {targetpos}, input).Any();
-                //x => x.NetworkId != targetnetid, hard to realize with teamult
+                // x => x.NetworkId != targetnetid, hard to realize with teamult
         }
 
         static void Obj_AI_Base_OnTeleport(GameObject sender, GameObjectTeleportEventArgs args)
@@ -390,21 +388,21 @@ namespace Jinx.Modes
                 return;
             }
 
-#pragma warning disable 618
+            #pragma warning disable 618
             var recall = Packet.S2C.Teleport.Decoded(unit, args);
-#pragma warning restore 618
+            #pragma warning restore 618
             var enemyInfo =
                 EnemyInfo.Find(x => x.Player.NetworkId == recall.UnitNetworkId).RecallInfo.UpdateRecall(recall);
 
-#pragma warning disable 618
+            #pragma warning disable 618
             if (recall.Type == Packet.S2C.Teleport.Type.Recall)
-#pragma warning restore 618
+            #pragma warning restore 618
             {
                 switch (recall.Status)
                 {
-#pragma warning disable 618
+            #pragma warning disable 618
                     case Packet.S2C.Teleport.Status.Abort:
-#pragma warning restore 618
+            #pragma warning restore 618
                         if (MenuLocal.Item("notifRecAborted").GetValue<bool>())
                         {
                             ShowNotification(enemyInfo.Player.ChampionName + ": Recall ABORTED",
@@ -412,9 +410,9 @@ namespace Jinx.Modes
                         }
 
                         break;
-#pragma warning disable 618
+            #pragma warning disable 618
                     case Packet.S2C.Teleport.Status.Finish:
-#pragma warning restore 618
+            #pragma warning restore 618
                         if (MenuLocal.Item("notifRecFinished").GetValue<bool>())
                         {
                             ShowNotification(enemyInfo.Player.ChampionName + ": Recall FINISHED", NotificationColor,
@@ -455,7 +453,7 @@ namespace Jinx.Modes
             foreach (EnemyInfo enemyInfo in EnemyInfo.Where(x =>
                 x.Player.IsValid<Obj_AI_Hero>() &&
                 x.RecallInfo.ShouldDraw() &&
-                !x.Player.IsDead && //maybe redundant
+                !x.Player.IsDead && // maybe redundant
                 x.RecallInfo.GetRecallCountdown() > 0).OrderBy(x => x.RecallInfo.GetRecallCountdown()))
             {
                 if (!enemyInfo.RecallInfo.LockedTarget)
@@ -520,7 +518,7 @@ namespace Jinx.Modes
 
             if (count > 0)
             {
-                if (count != 1) //make the whole bar fadeout when its only 1
+                if (count != 1) // make the whole bar fadeout when its only 1
                     fadeout = 1f;
 
                 DrawRect(BarX, BarY, BarWidth, BarHeight, 1,
@@ -562,10 +560,10 @@ namespace Jinx.Modes
     {
         public EnemyInfo EnemyInfo;
         public Dictionary<int, float> IncomingDamage; //from, damage
-#pragma warning disable 618
+        #pragma warning disable 618
         public Packet.S2C.Teleport.Struct Recall;
         public Packet.S2C.Teleport.Struct AbortedRecall;
-#pragma warning restore 618
+        #pragma warning restore 618
         public bool LockedTarget;
         public float EstimatedShootT;
         public int AbortedT;
@@ -574,9 +572,9 @@ namespace Jinx.Modes
         public RecallInfo(EnemyInfo enemyInfo)
         {
             EnemyInfo = enemyInfo;
-#pragma warning disable 618
+            #pragma warning disable 618
             Recall = new Packet.S2C.Teleport.Struct(EnemyInfo.Player.NetworkId, Packet.S2C.Teleport.Status.Unknown, Packet.S2C.Teleport.Type.Unknown, 0);
-#pragma warning restore 618
+            #pragma warning restore 618
             IncomingDamage = new Dictionary<int, float>();
         }
 
@@ -587,29 +585,29 @@ namespace Jinx.Modes
 
         public bool IsPorting()
         {
-#pragma warning disable 618
+        #pragma warning disable 618
             return Recall.Type == Packet.S2C.Teleport.Type.Recall && Recall.Status == Packet.S2C.Teleport.Status.Start;
-#pragma warning restore 618
+        #pragma warning restore 618
         }
 
         public bool WasAborted()
         {
-#pragma warning disable 618
+        #pragma warning disable 618
             return Recall.Type == Packet.S2C.Teleport.Type.Recall && Recall.Status == Packet.S2C.Teleport.Status.Abort;
-#pragma warning restore 618
+        #pragma warning restore 618
         }
 
-#pragma warning disable 618
+        #pragma warning disable 618
         public EnemyInfo UpdateRecall(Packet.S2C.Teleport.Struct newRecall)
-#pragma warning restore 618
+        #pragma warning restore 618
         {
             IncomingDamage.Clear();
             LockedTarget = false;
             EstimatedShootT = 0;
 
-#pragma warning disable 618
+        #pragma warning disable 618
             if (newRecall.Type == Packet.S2C.Teleport.Type.Recall && newRecall.Status == Packet.S2C.Teleport.Status.Abort)
-#pragma warning restore 618
+        #pragma warning restore 618
             {
                 AbortedRecall = Recall;
                 AbortedT = Utils.TickCount;
@@ -651,7 +649,7 @@ namespace Jinx.Modes
         public override string ToString()
         {
             String drawtext = EnemyInfo.Player.ChampionName + ": " + Recall.Status;
-                //change to better string and colored
+                // change to better string and colored
 
             float countdown = GetRecallCountdown()/1000f;
 

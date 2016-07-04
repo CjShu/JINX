@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-
-namespace Jinx.Modes
+﻿namespace Jinx.Modes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+
     public class OnDamageEvent
     {
         public int Time;
@@ -97,7 +95,7 @@ namespace Jinx.Modes
 
         private static float GetPredictedHealth(this Obj_AI_Base monster, int time)
         {
-            //return monster.TotalShieldHealth() + monster.HPRegenRate * 2 - monster.GetPredictedDamage(time);
+            // Return monster.TotalShieldHealth() + monster.HPRegenRate * 2 - monster.GetPredictedDamage(time);
 
             return monster.AllShield + monster.HPRegenRate*2 - monster.GetPredictedDamage(time);
         }
@@ -112,7 +110,7 @@ namespace Jinx.Modes
         {
             get
             {
-                //return EntityManager.MinionsAndMonsters.Monsters.Where(m => m.MaxHealth >= 3500 && m.IsGettingAttacked());
+                // Return EntityManager.MinionsAndMonsters.Monsters.Where(m => m.MaxHealth >= 3500 && m.IsGettingAttacked());
                 return MinionManager.GetMinions(40000).Where(m => m.MaxHealth >= 3500 && m.IsVisible);
             }
         }
@@ -139,7 +137,7 @@ namespace Jinx.Modes
                     var damage = monster.GetUltimateDamage(health);
                     var heroNear = HeroManager.Enemies.Find(h => h.Distance(monster) >= 225f + monster.BoundingRadius);
 
-                    //DrawManager.JungleStealText.TextValue = monster.Name + " is getting attacked. Damage left: " + (int)(100 * Math.Max(health - damage, 0) / monster.MaxHealth) + "%.";
+                    // DrawManager.JungleStealText.TextValue = monster.Name + " is getting attacked. Damage left: " + (int)(100 * Math.Max(health - damage, 0) / monster.MaxHealth) + "%.";
                     if (health <= damage && heroNear != null)
                     {
                         Champion.PlayerSpells.R.Cast(heroNear);

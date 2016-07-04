@@ -112,7 +112,7 @@ namespace Jinx.Common
             return polygon;
         }
 
-        //Clipper
+        // Clipper
         public static List<Polygon> ToPolygons(this Paths v)
         {
             var result = new List<Polygon>();

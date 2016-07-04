@@ -1,13 +1,13 @@
-﻿using System;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-using SharpDX.Direct3D9;
-using Font = SharpDX.Direct3D9.Font;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using SharpDX.Direct3D9;
+    using Font = SharpDX.Direct3D9.Font;
 
     public static class CommonHelper
     {
@@ -64,7 +64,6 @@ namespace Jinx.Common
             sum = vectors.Aggregate(sum, (current, vec) => current + vec);
             return sum / vectors.Length;
         }
-
 
 
         public static void DrawText(Font vFont, string vText, float vPosX, float vPosY, ColorBGRA vColor)

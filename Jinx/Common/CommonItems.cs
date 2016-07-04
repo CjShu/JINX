@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+
     internal class CommonItems
     {
         public static Items.Item Youmuu = new Items.Item(3142, 225f);
@@ -145,10 +145,7 @@ namespace Jinx.Common
         {
             if (args.Target is Obj_AI_Hero && Modes.ModeConfig.Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                foreach (
-                    var item in
-                        ItemDb.Where(
-                            i =>
+                foreach (var item in ItemDb.Where(i =>
                                 i.Value.ItemType == EnumItemType.OnTarget
                                 && i.Value.TargetingType == EnumItemTargettingType.EnemyHero
                                 && i.Value.Item.IsReady())
@@ -177,10 +174,7 @@ namespace Jinx.Common
                     return;
                 }
 
-                foreach (
-                    var item in
-                        ItemDb.Where(
-                            item =>
+                foreach (var item in ItemDb.Where(item =>
                                 item.Value.ItemType == EnumItemType.AoE &&
                                 (item.Value.TargetingType == EnumItemTargettingType.EnemyObjects || item.Value.TargetingType == EnumItemTargettingType.EnemyHero))
                             .Where(item => t.IsValidTarget(item.Value.Item.Range) && item.Value.Item.IsReady()))
@@ -188,10 +182,7 @@ namespace Jinx.Common
                     item.Value.Item.Cast();
                 }
 
-                foreach (
-                    var item in
-                        ItemDb.Where(
-                            item =>
+                foreach (var item in ItemDb.Where(item =>
                                 item.Value.ItemType == EnumItemType.Targeted &&
                                 item.Value.TargetingType == EnumItemTargettingType.EnemyHero)
                             .Where(
@@ -296,16 +287,6 @@ namespace Jinx.Common
                 {
                     Youmuu.Cast();
                 }
-
-                //if ((CommonManaManager.GetMobType(mob) == CommonManaManager.MobTypes.Dragon && (youmuuBaron == 1 || youmuuBaron == 3))
-                //    ||
-                //    (CommonManaManager.GetMobType(mob) == CommonManaManager.MobTypes.Baron && (youmuuBaron == 2 || youmuuBaron == 3))
-                //    || (CommonManaManager.GetMobType(mob) == CommonManaManager.MobTypes.Red && (youmuuRed == 1 || youmuuBaron == 3))
-                //    ||
-                //    (CommonManaManager.GetMobType(mob) == CommonManaManager.MobTypes.Blue && (youmuuRed == 2 || youmuuBaron == 3)))
-                //{
-                //    Youmuu.Cast();
-                //}
             }
         }
     }

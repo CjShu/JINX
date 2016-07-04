@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+    using LeagueSharp;
+    using LeagueSharp.Common;
+
     internal class CommonMath
     {
 
@@ -19,17 +14,6 @@ namespace Jinx.Common
             {
                 fComboDamage += ObjectManager.Player.GetSpellDamage(t, SpellSlot.Q);
             }
-
-
-            //if (ObjectManager.Player.Health >= 20 && ObjectManager.Player.Health <= 50)
-            //{
-            //    fComboDamage += ObjectManager.Player.TotalAttackDamage*3;
-            //}
-
-            //if (ObjectManager.Player.Health > 50)
-            //{
-            //    fComboDamage += ObjectManager.Player.TotalAttackDamage * 7;
-            //}
 
             if (Champion.PlayerSpells.E.IsReady())
             {
@@ -66,6 +50,5 @@ namespace Jinx.Common
 
             return (float)fComboDamage;
         }
-
     }
 }

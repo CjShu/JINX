@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Jinx.Common;
-using LeagueSharp;
-using LeagueSharp.Common;
-using Color = SharpDX.Color;
+﻿using Jinx.Common;
 
 namespace Jinx.Modes
 {
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using Color = SharpDX.Color;
+
     internal class ModeConfig
     {
         public static Orbwalking.Orbwalker Orbwalker;
@@ -23,7 +21,7 @@ namespace Jinx.Modes
         public static Menu MenuTools { get; private set; }
         public static void Init()
         {
-            MenuConfig = new Menu(":: Jinx is Back", "Jinx", true).SetFontStyle(FontStyle.Regular, Color.GreenYellow);
+            MenuConfig = new Menu(":: CjShu Jinx is Back", "CjShu Jinx Back", true).SetFontStyle(FontStyle.Regular, Color.GreenYellow);
 
             MenuTools = new Menu("Tools", "Tools");
             MenuConfig.AddSubMenu(MenuTools);
@@ -39,8 +37,8 @@ namespace Jinx.Modes
                 Common.CommonSkins.Init(MenuTools);
             }
 
-            //EvadeMain.Init();
-            Common.CommonHelper.Init();
+            // EvadeMain.Init();
+            CommonHelper.Init();
 
             MenuKeys = new Menu("Keys", "Keys").SetFontStyle(FontStyle.Bold, Color.Coral);
             {
@@ -50,7 +48,7 @@ namespace Jinx.Modes
                 MenuConfig.AddSubMenu(MenuKeys);
             }
 
-            Modes.ModeCombo.Init();
+            ModeCombo.Init();
 
             MenuFarm = new Menu("Farm", "Farm");
             {
@@ -64,7 +62,7 @@ namespace Jinx.Modes
             }
 
             new ModeDraw().Init();
-            Modes.ModePerma.Init();
+            ModePerma.Init();
             MenuConfig.AddToMainMenu();
             
             foreach (var i in MenuConfig.Children.Cast<Menu>().SelectMany(GetSubMenu))

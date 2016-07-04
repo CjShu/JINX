@@ -1,5 +1,3 @@
-using LeagueSharp;
-
 namespace Jinx
 {
     internal class Program

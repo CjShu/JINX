@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
+﻿
 using Jinx.Common;
-using Color = SharpDX.Color;
 
 namespace Jinx.Modes
 {
+
+    using System.Drawing;
+    using LeagueSharp.Common;
+
+
     internal class ModeSettings
     {
         public static Menu MenuLocal { get; private set; }
@@ -46,7 +43,7 @@ namespace Jinx.Modes
             MenuFlame.AddItem(new MenuItem("Flame.Ctrl6", "After Kill: Show Champion Point Icon (Ctrl + 6)").SetValue(new StringList(new[] { "Off", "On" })));
             
             Modes.ModeBaseUlti.Init(MenuLocal);
-            //Common.CommonManaManager.Init(MenuLocal);
+            // Common.CommonManaManager.Init(MenuLocal);
         }
 
         static void LoadDefaultSettingsQ()

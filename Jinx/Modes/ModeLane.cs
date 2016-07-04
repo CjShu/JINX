@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
+﻿
 using Jinx.Common;
-using SharpDX;
-using Collision = LeagueSharp.Common.Collision;
 
 namespace Jinx.Modes
 {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+
     internal static class ModeLane
     {
         public static Menu MenuLocal { get; private set; }
@@ -116,9 +115,7 @@ namespace Jinx.Modes
 
                 if (ModeConfig.MenuConfig.Item("Lane.LaneQuick").GetValue<KeyBind>().Active)
                 {
-                    foreach (
-                        var minion in
-                            minions.Where(m => m.CanKillableWith(Q) && Q.CanCast(m)))
+                    foreach (var minion in minions.Where(m => m.CanKillableWith(Q) && Q.CanCast(m)))
                     {
                         Champion.PlayerSpells.CastQObjects(minion);
                     }
@@ -126,10 +123,7 @@ namespace Jinx.Modes
                 else
                 {
 
-                    foreach (
-                        var minion in
-                            minions.Where(
-                                m =>
+                    foreach (var minion in minions.Where(m =>
                                     HealthPrediction.GetHealthPrediction(m,
                                         (int) (ObjectManager.Player.AttackCastDelay*1000), Game.Ping/2 - 100) < 0)
                                 .Where(m => m.CanKillableWith(Q) && Q.CanCast(m)))
@@ -144,10 +138,7 @@ namespace Jinx.Modes
             {
                 var minions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, E.Range);
 
-                foreach (
-                    var minion in
-                        minions.Where(
-                            m =>
+                foreach (var minion in minions.Where(m =>
                                 HealthPrediction.GetHealthPrediction(m,
                                     (int) (ObjectManager.Player.AttackCastDelay*1000), Game.Ping/2 - 100) < 0)
                             .Where(m => m.Health < E.GetDamage(m) - 10 && E.CanCast(m)))
@@ -170,9 +161,7 @@ namespace Jinx.Modes
             {
                 var minions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, Q.Range);
 
-                foreach (
-                    var minion in
-                        MinionManager.GetMinions(Q.Range)
+                foreach (var minion in MinionManager.GetMinions(Q.Range)
                             .Where(m => m.CanKillableWith(Q) && Q.CanCast(m)))
                 {
                     Champion.PlayerSpells.CastQObjects(minion);
@@ -183,10 +172,7 @@ namespace Jinx.Modes
             {
                 var minions = MinionManager.GetMinions(ObjectManager.Player.ServerPosition, E.Range);
 
-                foreach (
-                    var minion in
-                        minions.Where(
-                            m =>
+                foreach (var minion in minions.Where(m =>
                                 HealthPrediction.GetHealthPrediction(m,
                                     (int) (ObjectManager.Player.AttackCastDelay*1000), Game.Ping/2 - 100) < 0)
                             .Where(m => m.CanKillableWith(E) && E.CanCast(m)))

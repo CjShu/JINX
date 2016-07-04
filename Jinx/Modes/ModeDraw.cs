@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using LeagueSharp.Common;
-using Jinx.Champion;
+﻿using Jinx.Champion;
 using Jinx.Common;
-using Jinx.Properties;
-using SharpDX;
-using SharpDX.Direct3D9;
-using Color = System.Drawing.Color;
 using CommonGeometry = Jinx.Common.CommonGeometry;
-using Font = SharpDX.Direct3D9.Font;
 
 namespace Jinx.Modes
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using Color = System.Drawing.Color;
+    using Font = SharpDX.Direct3D9.Font;
     using System.Linq;
     using LeagueSharp;
 
@@ -129,7 +127,7 @@ namespace Jinx.Modes
                     {
                         MenuLocal.AddItem(dmgAfterComboItem);
 
-                        Utility.HpBarDamageIndicator.DamageToUnit = Common.CommonMath.GetComboDamage;
+                        Utility.HpBarDamageIndicator.DamageToUnit = CommonMath.GetComboDamage;
                         Utility.HpBarDamageIndicator.Enabled = dmgAfterComboItem.GetValue<bool>();
                         dmgAfterComboItem.ValueChanged += delegate (object sender, OnValueChangeEventArgs eventArgs)
                         {
@@ -255,7 +253,7 @@ namespace Jinx.Modes
 
             foreach (var t in HeroManager.Enemies.Where(e => !e.IsDead && e.Health < CommonMath.GetComboDamage(e)))
             {
-                //Render.Circle.DrawCircle(t.Position, 105, Color.White);
+                // Render.Circle.DrawCircle(t.Position, 105, Color.White);
                 CommonHelper.DrawText(CommonHelper.TextStatus, "Can Kill!", (int)t.HPBarPosition.X + 145, (int)t.HPBarPosition.Y + 5, SharpDX.Color.Red);
             }
 

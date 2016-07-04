@@ -1,12 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-using Color = SharpDX.Color;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using Color = SharpDX.Color;
+
     internal class CommonAutoLevel
     {
         public static Menu MenuLocal;

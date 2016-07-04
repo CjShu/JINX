@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 using Jinx.Common;
-using LeagueSharp;
-using LeagueSharp.Common;
 
 namespace Jinx.Modes
 {
+    using System;
+    using LeagueSharp.Common;
+
     internal class ModePerma
     {
         private static Spell Q => Champion.PlayerSpells.Q;
@@ -17,7 +14,7 @@ namespace Jinx.Modes
         private static Spell R => Champion.PlayerSpells.R;
         public static void Init()
         {
-            //Game.OnUpdate += GameOnOnUpdate;
+            // Game.OnUpdate += GameOnOnUpdate;
         }
 
         private static void GameOnOnUpdate(EventArgs args)

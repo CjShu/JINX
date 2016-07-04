@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+
     internal class CommonSkins
     {
         public static Menu MenuLocal { get; private set; }

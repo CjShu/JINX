@@ -1,14 +1,16 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
+﻿
 using Jinx.Champion;
 using Jinx.Common;
-using Color = SharpDX.Color;
 
 namespace Jinx.Modes
 {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using Color = SharpDX.Color;
+
     internal static class ModeJungle
     {
         public static Menu MenuLocal { get; private set; }

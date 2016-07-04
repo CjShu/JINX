@@ -1,12 +1,11 @@
-﻿using System;
-using System.Drawing;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-using SharpDX.Direct3D9;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using SharpDX.Direct3D9;
     using System.Linq;
 
     internal static class CommonManaBar
@@ -53,7 +52,7 @@ namespace Jinx.Common
 
         private static bool InLane(this Obj_AI_Hero player, float range)
         {
-            var minions = LeagueSharp.Common.MinionManager.GetMinions(player.ServerPosition, range);
+            var minions = MinionManager.GetMinions(player.ServerPosition, range);
 
             if (minions.Count > 0)
             {

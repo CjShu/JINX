@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-using Jinx.Modes;
-using SharpDX;
-using Color = SharpDX.Color;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using Color = SharpDX.Color;
+
     internal static class CommonManaManager
     {
         public static Menu MenuLocal { get; private set; }
@@ -47,15 +46,9 @@ namespace Jinx.Common
             MenuLocal = new Menu("Mana Settings", "MinMana").SetFontStyle(FontStyle.Regular, Color.Aquamarine);
             mainMenu.AddSubMenu(MenuLocal);
 
-            //MenuLocal.AddItem(new MenuItem("MinMana.Mode", "Min. Mana Control Mode: ").SetValue(new StringList(new[] { "Simple Mode", "Advanced Mode" }, 0)).SetFontStyle(FontStyle.Bold, Color.Aqua).SetTag(9)).ValueChanged +=
-            //    delegate(object sender, OnValueChangeEventArgs args)
-            //    {
-            //        InitRefreshMenuItems();
-            //    };
-
             MenuLocal.AddItem(new MenuItem("MinMana.Enable", "Quick Enable/Disable Minimum Mana Control!").SetValue(new KeyBind("M".ToCharArray()[0], KeyBindType.Toggle, true)).SetFontStyle(FontStyle.Regular, Color.Aqua).SetTag(9)).Permashow(true, ObjectManager.Player.ChampionName + " | " + "Min. Mana Control", Colors.ColorPermaShow);
 
-            //InitSimpleMenu();
+            // InitSimpleMenu();
             InitAdvancedMenu();
 
             MenuLocal.AddItem(new MenuItem("MinMana.Jungle.DontCheckEnemyBuff", "Don't check min. mana if I'm taking:").SetValue(new StringList(new[] {"Off", "Ally Buff", "Enemy Buff", "Both"}, 2))).SetFontStyle(FontStyle.Regular, Color.Wheat).SetTag(9);
@@ -104,14 +97,6 @@ namespace Jinx.Common
                 }
             }
         }
-
-        //static void InitSimpleMenu()
-        //{
-        //    MenuLocal.AddItem(new MenuItem("MinMana.Simple.Harass", "Harass %").SetValue(new Slider(60, 100, 0))).SetFontStyle(FontStyle.Regular, Color.IndianRed).SetTag(1);
-        //    MenuLocal.AddItem(new MenuItem("MinMana.Simple.Lane", "Lane Clear %").SetValue(new Slider(30, 100, 0))).SetFontStyle(FontStyle.Regular, Color.LightSkyBlue).SetTag(1);
-        //    MenuLocal.AddItem(new MenuItem("MinMana.Simple.Jungle", "Jungle Clear %").SetValue(new Slider(60, 100, 0))).SetFontStyle(FontStyle.Regular, Color.IndianRed).SetTag(1);
-        //}
-
         static void InitAdvancedMenu()
         {
             var menuHarass = new Menu("Harass Min. Mana Control", "MinMana.Menu.Harass").SetFontStyle(FontStyle.Regular, Color.DarkSalmon);

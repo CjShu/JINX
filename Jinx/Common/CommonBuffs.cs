@@ -1,13 +1,9 @@
-﻿using System;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-using SharpDX.Direct3D9;
-using Font = SharpDX.Direct3D9.Font;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
 
     public static class CommonBuffs
     {
@@ -15,7 +11,6 @@ namespace Jinx.Common
         {
             return obj.Buffs.Any(buff => buff.Name.ToLower() == "sheen");
         }
-
 
         public static bool CanKillableWith(this Obj_AI_Base t, Spell spell)
         {

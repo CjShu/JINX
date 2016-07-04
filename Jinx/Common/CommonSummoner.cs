@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+
+    using System;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+
     internal class CommonSummoner
     {
         public static SpellSlot SmiteSlot = SpellSlot.Unknown;
@@ -15,10 +13,10 @@ namespace Jinx.Common
         public static SpellSlot FlashSlot = SpellSlot.Unknown;
         public static SpellSlot TeleportSlot = ObjectManager.Player.GetSpellSlot("SummonerTeleport");
 
-        private static readonly int[] SmitePurple = {3713, 3726, 3725, 3726, 3723};
-        private static readonly int[] SmiteGrey = {3711, 3722, 3721, 3720, 3719};
-        private static readonly int[] SmiteRed = {3715, 3718, 3717, 3716, 3714};
-        private static readonly int[] SmiteBlue = {3706, 3710, 3709, 3708, 3707};
+        private static readonly int[] SmitePurple = { 3713, 3726, 3725, 3726, 3723 };
+        private static readonly int[] SmiteGrey = { 3711, 3722, 3721, 3720, 3719 };
+        private static readonly int[] SmiteRed = { 3715, 3718, 3717, 3716, 3714 };
+        private static readonly int[] SmiteBlue = { 3706, 3710, 3709, 3708, 3707 };
 
         private static string Smitetype
         {

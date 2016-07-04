@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using LeagueSharp;
-using LeagueSharp.Common;
-using SharpDX;
-using Color = SharpDX.Color;
-
-namespace Jinx.Common
+﻿namespace Jinx.Common
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using SharpDX;
+    using Color = SharpDX.Color;
+
     internal class EnemyHeros
     {
         public Obj_AI_Hero Player;
@@ -194,7 +194,7 @@ namespace Jinx.Common
                     wardIds.Select(x => x)
                         .Where(
                             id =>
-                                //menu.Item("AutoBush." + id).GetValue<bool>() && 
+                                // menu.Item("AutoBush." + id).GetValue<bool>() && 
                                 LeagueSharp.Common.Items.HasItem(id) &&
                                 LeagueSharp.Common.Items.CanUseItem(id))
                         .Select(
@@ -232,19 +232,7 @@ namespace Jinx.Common
                         int timedif = Environment.TickCount - lastTimeWarded;
 
                         if (timedif > 1250 && !(timedif < 2500 && GetNearObject("SightWard", wardPosition, 200) != null))
-                            //no near wards
                         {
-                            //var myInClause = new string[] { "Corki", "Ashe", "Quinn", "Kalista" };
-                            //var results = from x in ObjectManager.Player.ChampionName
-                            //              where myInClause.Contains(x.ToString())
-                            //              select x;
-
-                            //if (championSpell.IsReady())
-                            //{
-                            //    championSpell.Cast(wardPosition);
-                            //    return;
-                            //}
-
                             if ((ObjectManager.Player.ChampionName == "Corki"
                                  || ObjectManager.Player.ChampionName == "Ashe"
                                  || ObjectManager.Player.ChampionName == "Quinn"

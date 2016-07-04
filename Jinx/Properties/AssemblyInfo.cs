@@ -1,33 +1,39 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-[assembly: AssemblyTitle("Jinx")]
+// 組件的一般資訊是由下列的屬性集控制。
+// 變更這些屬性的值即可修改組件的相關
+// 資訊。
+
+[assembly: AssemblyTitle("CjShu Jinx")]
 [assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyConfiguration("CjShu")]
 [assembly: AssemblyCompany("LeagueSharp")]
 [assembly: AssemblyProduct("Jinx")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-// Setting ComVisible to false makes the types in this assembly not visible 
-// to COM components.  If you need to access a type in this assembly from 
-// COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
-// The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("8996e64c-5ae1-4a24-91cc-cfff6af4ef6a")]
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Build and Revision Numbers 
-// by using the '*' as shown below:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("6.6.0.4")]
-[assembly: AssemblyFileVersion("6.6.0.4")]
 
+// 將 ComVisible 設定為 false 會使得這個組件中的類型
+// 對 COM 元件而言為不可見。如果您需要從 COM 存取這個組件中
+// 的類型，請在該類型上將 ComVisible 屬性設定為 true。
+
+[assembly: ComVisible(false)]
+
+// 下列 GUID 為專案公開 (Expose) 至 COM 時所要使用的 typelib ID
+
+[assembly: Guid("b876878b-f727-4d4b-8dff-17ca4bb4fe0c")]
+
+// 組件的版本資訊由下列四個值所組成: 
+//
+//      主要版本
+//      次要版本 
+//      組建編號
+//      修訂編號
+//
+// 您可以指定所有的值，也可以依照以下的方式，使用 '*' 將組建和修訂編號
+// 指定為預設值: 
+// [assembly: AssemblyVersion("1.0.*")]
+
+[assembly: AssemblyVersion("6.13.0.0")]
+[assembly: AssemblyFileVersion("6.13.0.0")]

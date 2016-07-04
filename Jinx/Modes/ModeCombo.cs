@@ -1,18 +1,14 @@
-﻿using System;
-using System.CodeDom;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LeagueSharp;
-using LeagueSharp.Common;
-using Jinx.Common;
-using SharpDX;
-using Color = SharpDX.Color;
+﻿using Jinx.Common;
 
 namespace Jinx.Modes
 {
+    using System;
+    using System.Drawing;
+    using System.Linq;
+    using LeagueSharp;
+    using LeagueSharp.Common;
+    using Color = SharpDX.Color;
+
     internal static class ModeCombo
     {
         public static Menu MenuLocal { get; private set; }
@@ -33,7 +29,7 @@ namespace Jinx.Modes
 
             Game.OnUpdate += OnUpdate;
             Orbwalking.BeforeAttack += OrbwalkingOnBeforeAttack;
-            //Drawing.OnDraw += DrawingOnOnDraw;
+            // Drawing.OnDraw += DrawingOnOnDraw;
 
             Obj_AI_Base.OnBuffAdd += (sender, args) =>
             {
@@ -95,31 +91,16 @@ namespace Jinx.Modes
             {
                 Q.Cast();
             }
-
-            //if (!Common.CommonHelper.ShouldCastSpell(TargetSelector.GetTarget(Orbwalking.GetRealAutoAttackRange(null) + 65, TargetSelector.DamageType.Physical)))
-            //{
-            //    return;
-            //}
-
-            //if (!W.IsReady() || Modes.ModeConfig.Orbwalker.ActiveMode != Orbwalking.OrbwalkingMode.Combo || MenuLocal.Item("Combo.W").GetValue<StringList>().SelectedIndex == 0)
-            //{
-            //    return;
-            //}
-
-            //if (Common.CommonHelper.ShouldCastSpell((Obj_AI_Hero) args.Target) && args.Target is Obj_AI_Hero)
-            //{
-            //    W.Cast();
-            //}
         }
 
         static void OnUpdate(EventArgs args)
         {
             
-            //foreach (var b in ObjectManager.Player.Buffs)
-            //{
+            // foreach (var b in ObjectManager.Player.Buffs)
+            // {
             //    Console.WriteLine(b.DisplayName + " : " + b.Count);
-            //}
-            //Console.WriteLine("-------------------------------------------------");
+            // }
+            // Console.WriteLine("-------------------------------------------------");
 
             if (ModeConfig.Orbwalker.ActiveMode != Orbwalking.OrbwalkingMode.Combo)
             {
@@ -200,6 +181,7 @@ namespace Jinx.Modes
                 E.CastIfHitchanceEquals(enemy, HitChance.VeryHigh);
             }
         }
+
         private static void ECast()
         {
             foreach (
@@ -236,7 +218,6 @@ namespace Jinx.Modes
             }
         }
 
-
         static void ExecuteCombo()
         {
             ExecuteQCombo();
@@ -263,12 +244,6 @@ namespace Jinx.Modes
 
                 if (W.CanCast(t) && (W.GetDamage(t) > t.Health || !t.IsValidTarget(Orbwalking.GetRealAutoAttackRange(null) + 60)))
                 {
-                    //var wPrediction = W.GetPrediction(t);
-                    //var hithere = wPrediction.CastPosition.Extend(ObjectManager.Player.Position, -140);
-                    //if (wPrediction.Hitchance >= hithChances[Modes.ModeSettings.MenuSpellW.Item("Set.W.Hitchance").GetValue<StringList>().SelectedIndex + 1])
-                    //{
-                    //    W.Cast(hithere);
-                    //}
                     W.CastIfHitchanceEquals(t, hithChances[Modes.ModeSettings.MenuSpellW.Item("Set.W.Hitchance").GetValue<StringList>().SelectedIndex]);
                 }
             }
